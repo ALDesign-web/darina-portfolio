@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darina — Marketing & Brand Designer</title>
+  <meta name="description" content="Portfolio of Darina — Senior marketing designer crafting high-conversion web experiences, brand identities, and growth-driven launch campaigns." />
+  
+  <!-- Preload original fonts for instant zero-layout-shift rendering -->
+  <link rel="preload" href="/fonts/PPEditorialNew-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/PPEditorialNew-Italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/PPNeueMontreal-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/PPNeueMontreal-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/FragmentMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Google Fonts for Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notice" role="status" aria-live="polite"></div>
+
+  <!-- Mobile Header Bar (<840px) -->
+  <header class="mobile-header">
+    <span class="mobile-logo js-go-home">Darina</span>
+    <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation">Menu</button>
+  </header>
+
+  <div class="portfolio-layout">
+    
+    <!-- LEFT SIDEBAR (Fixed column exactly matching Alina Chiu) -->
+    <aside id="main-sidebar" class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <a href="#" class="sidebar-logo js-go-home">Darina</a>
+        </div>
+
+        <!-- Section: BRAND & MARKETING ACCORDION -->
+        <div class="sidebar-accordion-group" data-accordion-group="brand">
+          <button type="button" class="sidebar-accordion-trigger" data-accordion="brand" aria-expanded="false">
+            <span class="sidebar-accordion-label">Brand &amp; Marketing</span>
+            <svg class="sidebar-accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 4l4 4-4 4"/>
+            </svg>
+          </button>
+          <div class="sidebar-accordion-body">
+            <div class="sidebar-accordion-inner">
+              <ul id="sidebar-brand-list" class="sidebar-nav-list">
+                <!-- Dynamically populated from main.js -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: ENTERPRISE & NDA ACCORDION -->
+        <div class="sidebar-accordion-group" data-accordion-group="enterprise">
+          <button type="button" class="sidebar-accordion-trigger" data-accordion="enterprise" aria-expanded="false">
+            <span class="sidebar-accordion-label-wrap">
+              <span class="sidebar-accordion-label">Enterprise &amp; NDA</span>
+              <span class="nda-pill" style="font-size: 9px; padding: 1px 5px;">NDA</span>
+            </span>
+            <svg class="sidebar-accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 4l4 4-4 4"/>
+            </svg>
+          </button>
+          <div class="sidebar-accordion-body">
+            <div class="sidebar-accordion-inner">
+              <ul id="sidebar-enterprise-list" class="sidebar-nav-list">
+                <!-- Dynamically populated from main.js -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: OTHER -->
+        <nav class="sidebar-nav-group" aria-label="Other pages">
+          <span class="sidebar-nav-label">Other</span>
+          <ul class="sidebar-nav-list">
+            <li>
+              <a href="#about" class="sidebar-nav-link" data-nav="about">
+                <span>About</span>
+              </a>
+            </li>
+            <li>
+              <a href="#cv" class="sidebar-nav-link" data-nav="cv">
+                <span>CV</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.behance.net/darinakirrf4b1" target="_blank" rel="noopener noreferrer" class="sidebar-nav-link" data-nav="behance">
+                <span>Behance</span>
+                <span class="external-arrow">↗</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Section: CONNECT ACCORDION -->
+      <div class="sidebar-accordion-group" data-accordion-group="connect" style="margin-bottom: 0;">
+        <button type="button" class="sidebar-accordion-trigger" data-accordion="connect" aria-expanded="false">
+          <span class="sidebar-accordion-label">Connect</span>
+          <svg class="sidebar-accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 4l4 4-4 4"/>
+          </svg>
+        </button>
+        <div class="sidebar-accordion-body">
+          <div class="sidebar-accordion-inner">
+            <ul class="sidebar-nav-list">
+              <li>
+                <a href="https://t.me/DarinaKirr" target="_blank" rel="noopener noreferrer" class="sidebar-nav-link" data-nav="connect-telegram">
+                  <span>Telegram</span>
+                  <span class="external-arrow">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:darrkirr@gmail.com" class="sidebar-nav-link js-copy-email" data-email="darrkirr@gmail.com">
+                  <span>Email</span>
+                  <span class="external-arrow">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN STREAM CONTENT -->
+    <main class="main-wrapper">
+      <div class="main-container">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <div id="home-view" class="view-container active">
+          
+          <!-- Hero Section -->
+          <section class="hero-section">
+            <h1 class="hero-headline">
+              <span class="hero-greeting">Hello, I'm </span>
+              <span class="hero-name-wrapper">
+                <span class="hero-name">Darina</span>
+                <span class="hero-name-avatar-popup" aria-hidden="true">
+                  <img src="/assets/darina.png" alt="Darina Portrait" />
+                </span>
+              </span>
+            </h1>
+
+            <p class="hero-bio">
+              I’m a Graphic and Marketing Designer working across branding, digital design, and motion. I create visual identities, concepts, and design assets for brands and projects. I value thoughtful ideas, distinctive character, and visual solutions where aesthetics meet meaning.
+            </p>
+          </section>
+
+          <!-- Selected Work Section -->
+          <section class="selected-work-section">
+            <div class="portfolio-tabs-wrapper">
+              <h2 class="section-label-header" style="margin-bottom: 0;">Selected Work</h2>
+              <div class="portfolio-tabs" role="tablist">
+                <button class="portfolio-tab-btn active" data-tab="brand" role="tab" aria-selected="true">
+                  <span>Brand &amp; Marketing</span>
+                </button>
+                <button class="portfolio-tab-btn" data-tab="enterprise" role="tab" aria-selected="false">
+                  <span>Enterprise &amp; Campaigns</span>
+                  <span class="nda-pill">NDA</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- NDA Banner (shown only on enterprise tab) -->
+            <div id="nda-banner" class="nda-disclaimer-banner" style="display: none;">
+              <span class="nda-disclaimer-icon">🔒</span>
+              <p class="nda-disclaimer-text">
+                <strong>Confidential Work:</strong> Selected projects are confidential and subject to a Non-Disclosure Agreement (NDA). Available upon request, subject to client approval.
+              </p>
+            </div>
+
+            <div id="work-grid" class="work-grid">
+              <!-- Dynamically populated from main.js -->
+            </div>
+          </section>
+
+          <!-- Footer Section -->
+          <footer class="footer-section">
+            <h3 class="footer-heading">Thanks for visiting</h3>
+            <button class="footer-action-link js-reach-out">
+              Reach out
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+          </footer>
+
+        </div>
+
+        <!-- ================= CASE STUDY VIEW ================= -->
+        <div id="case-study-view" class="view-container">
+          <!-- Dynamically populated from main.js on project click -->
+        </div>
+
+        <!-- ================= CV VIEW ================= -->
+        <div id="cv-view" class="view-container">
+          <div class="cv-top-bar">
+            <a href="#" class="case-study-back-btn js-back-to-projects">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M14 8H2M7 3L2 8l5 5"/>
+              </svg>
+              <span>Back to Projects</span>
+            </a>
+            <a href="/assets/cv/darina-kyrychenko-cv.pdf" download="Darina-Kyrychenko-CV.pdf" class="cv-download-btn">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M8 2v9M4 7l4 4 4-4M2 14h12"/>
+              </svg>
+              <span>Download CV (PDF)</span>
+            </a>
+          </div>
+
+          <div class="cv-header-block">
+            <h1 class="about-hero-title" style="margin-bottom: 8px;">
+              <span class="about-editorial-headline">Curriculum </span>
+              <span class="about-editorial-name">Vitae</span>
+            </h1>
+            <p class="case-study-tagline">Darina Kyrychenko · Marketing &amp; Graphic Designer</p>
+          </div>
+
+          <!-- High-res CV Preview Container -->
+          <div class="cv-preview-card">
+            <img 
+              src="/assets/cv/preview.png" 
+              alt="Darina Kyrychenko CV Preview" 
+              class="cv-preview-image" 
+              loading="eager"
+            />
+          </div>
+
+          <footer class="footer-section">
+            <h3 class="footer-heading">Interested in working together?</h3>
+            <button class="footer-action-link js-reach-out">
+              Reach out on Telegram
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+          </footer>
+        </div>
+
+        <!-- ================= ABOUT VIEW ================= -->
+        <div id="about-view" class="view-container">
+          <a href="#" class="case-study-back-btn js-back-to-projects">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M14 8H2M7 3L2 8l5 5"/>
+            </svg>
+            <span>Back to Projects</span>
+          </a>
+
+          <h1 class="about-hero-title">
+            <span class="about-editorial-headline">About </span>
+            <span class="about-editorial-name">Darina</span>
+          </h1>
+
+          <div class="about-grid">
+            <div class="about-photo-wrapper">
+              <img src="/assets/darina.png" alt="Darina Kyrychenko Portrait" class="about-photo-img" />
+            </div>
+
+            <div class="about-content-col">
+              
+              <!-- Sub-section: A LITTLE ABOUT ME -->
+              <section class="about-section-block">
+                <h2 class="about-subheading">A Little About Me</h2>
+                <div class="about-paragraphs">
+                  <p class="about-lead-text">
+                    Hi! I’m Darina Kyrychenko, a designer from Ukraine, currently based in Kyiv.
+                  </p>
+                  <p class="about-body-text">
+                    For me, design is more than just a profession. It’s a way of thinking and seeing familiar things from a different perspective. I guess we were meant to find each other.
+                  </p>
+                  <p class="about-body-text">
+                    Outside of design, I love reading fiction and psychology books. I’m also into sports, especially yoga, Pilates, and strength training. Although I consider eating pizza a sport of its own. When no one’s watching, I love dancing and singing at the top of my lungs.
+                  </p>
+                  <p class="about-body-text">
+                    My family and friends mean the world to me. They’re my biggest source of support and inspiration. I also have my own lucky charm in life — my daemon, a black cat named Cash.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Sub-section: HOW I WORK -->
+              <section class="about-section-block">
+                <h2 class="about-subheading">How I Work</h2>
+                <div class="about-paragraphs">
+                  <p class="about-body-text">
+                    I’m driven by curiosity, openness to new ideas, and continuous growth. I enjoy exploring new tools, trying different approaches, experimenting with visual concepts, and stepping outside my comfort zone.
+                  </p>
+                  <p class="about-body-text">
+                    I approach projects not only from a designer’s perspective but also with an understanding of their purpose and the results they aim to achieve. For me, design is not just about creating something visually appealing, but about developing thoughtful solutions that communicate ideas and support broader goals.
+                  </p>
+                  <p class="about-body-text">
+                    I believe in teamwork, open communication, and constructive feedback. The best results come from people who listen to each other, share ideas, and work together towards a common goal.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Core Disciplines -->
+              <div class="about-section-block">
+                <h3 class="section-label-header" style="margin-bottom: 8px;">Core Disciplines</h3>
+                <div class="about-skills-list">
+                  <span class="skill-tag">Marketing Design</span>
+                  <span class="skill-tag">Brand Identity</span>
+                  <span class="skill-tag">Landing Pages &amp; CRO</span>
+                  <span class="skill-tag">Campaign Art Direction</span>
+                  <span class="skill-tag">Visual Storytelling</span>
+                  <span class="skill-tag">Motion &amp; Prototyping</span>
+                </div>
+              </div>
+
+              <!-- Contact CTA Button -->
+              <div style="margin-top: 8px;">
+                <button class="footer-action-link js-reach-out" style="font-size: 15px; font-weight: 500;">
+                  Get in touch
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <footer class="footer-section">
+            <h3 class="footer-heading">Thanks for visiting</h3>
+            <button class="footer-action-link js-reach-out">
+              Reach out
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+          </footer>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Main JavaScript Controller -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

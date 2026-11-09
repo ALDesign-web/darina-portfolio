@@ -1,0 +1,60 @@
+/* Design Tokens extracted from reference site alinachiu.com */
+:root {
+  /* Color Palette */
+  --bg-primary: #FFFFFF;
+  --bg-sidebar: #FAFAFA;
+  --bg-card: #F7F7F8;
+  --bg-badge: #FAFAFA;
+  --bg-hover-subtle: rgba(0, 0, 0, 0.04);
+  --bg-hover-badge: #F0F0F0;
+  
+  --text-primary: #000000;
+  --text-secondary: #656565;
+  --text-muted: #8E8E93;
+  --text-accent: #000000;
+  
+  --border-sidebar: #EEEEEE;
+  --border-subtle: #EEEEEE;
+  --border-divider: #EBEBEB;
+  --border-badge: rgba(0, 0, 0, 0.07);
+  
+  /* Typography Families */
+  --font-editorial-regular: 'PP Editorial New Regular', serif;
+  --font-editorial-italic: 'PP Editorial New Italic', serif;
+  --font-sans-montreal: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fragment Mono', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --sidebar-width: 240px;
+  --container-max-width: 1240px;
+  --radius-card: 8px;
+  --radius-pill: 9999px;
+  --radius-sm: 6px;
+  
+  /* Transitions */
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s ease;
+}
+
+/* Dark Mode support if preferred or toggled */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0C0C0D;
+    --bg-sidebar: #121214;
+    --bg-card: #18181B;
+    --bg-badge: #1C1C1F;
+    --bg-hover-subtle: rgba(255, 255, 255, 0.07);
+    --bg-hover-badge: #27272A;
+    
+    --text-primary: #F4F4F5;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
+    --text-accent: #FFFFFF;
+    
+    --border-sidebar: #27272A;
+    --border-subtle: #27272A;
+    --border-divider: #27272A;
+    --border-badge: rgba(255, 255, 255, 0.1);
+  }
+}
