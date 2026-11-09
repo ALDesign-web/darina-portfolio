@@ -22,13 +22,12 @@ const EXPORT_PLAN = [
       { id: '2085:36881', filename: 'screen-02.png', scale: 2 }
     ]
   },
-  // ================= 3. DISBALANSER =================
+  // ================= 3. DISBALANCER =================
   {
-    folder: 'disbalanser',
+    folder: 'disbalancer',
     items: [
-      { id: '2082:5068', filename: 'cover.png', scale: 2 },
-      { id: '2082:5135', filename: 'detail-01.png', scale: 2 },
-      { id: '2082:5136', filename: 'detail-02.png', scale: 2 }
+      { id: '2105:2823', filename: 'cover.png', scale: 2 },
+      { id: '2117:34127', filename: 'presentation.png', scale: 2 }
     ]
   },
   // ================= 4. KYIVGAZ =================

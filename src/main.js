@@ -74,27 +74,27 @@ export const PROJECTS = [
     ]
   },
   {
-    id: 'disbalanser',
+    id: 'disbalancer',
     tab: 'brand',
-    title: 'DISBALANSER: Cyber Defense & Web3 Brand Identity',
-    shortName: 'DISBALANSER DeFi',
+    title: 'DISBALANCER: Cyber Defense & Web3 Brand Identity',
+    shortName: 'DISBALANCER DeFi',
     category: 'Cybersecurity Brand Identity & Print/Digital System',
     year: '2022–2024',
-    coverImage: '/assets/projects/disbalanser/cover.png',
+    coverImage: '/assets/projects/disbalancer/cover.png',
     tagline: 'Comprehensive brand guidebook, Space Grotesk/Mono typographic system, cyberwar poster triptych, and social media architecture for DDoS defense protocol.',
     role: 'Brand & Graphic Designer',
     timeline: '3 Months',
     platform: 'Brand Guidebook, Print Spreads, Posters & Social Media',
     tags: ['CYBERSECURITY', 'BRAND IDENTITY', 'GUIDEBOOK', 'POSTER DESIGN', 'WEB3'],
-    overview: 'DISBALANSER (and its Liberator cyber-defense suite) is a decentralized cybersecurity and DDoS-mitigation project. The scope covered a complete brand identity guidebook, custom geometric 3D cubic node visuals, editorial brandbook spreads, a conceptual poster triptych, and a cohesive social media grid.',
-    problem: 'Cybersecurity brands frequently rely on generic shield clichés. DISBALANSER required a distinctive visual language capable of uniting technical developers, international media (Forbes, Bloomberg), and digital resistance volunteers.',
+    overview: 'DISBALANCER (and its Liberator cyber-defense suite) is a decentralized cybersecurity and DDoS-mitigation project. The scope covered a complete brand identity guidebook, custom geometric 3D cubic node visuals, editorial brandbook spreads, a conceptual poster triptych, and a cohesive social media grid.',
+    problem: 'Cybersecurity brands frequently rely on generic shield clichés. DISBALANCER required a distinctive visual language capable of uniting technical developers, international media (Forbes, Bloomberg), and digital resistance volunteers.',
     solution: 'Created an obsidian-and-magenta visual system anchored by isometric wireframe cubes, Space Grotesk and Space Mono typography, and bold activist poster compositions.',
     execution: 'Authored the full brand identity guidebook, logo construction grid, typography hierarchy, printed brandbook spreads, 3-poster campaign series, and 15+ modular social templates.',
     impact: 'Supported international media coverage and community mobilization across global cybersecurity and Web3 channels.',
     gallery: [
       {
-        image: '/assets/projects/disbalanser/presentation.png',
-        caption: 'DISBALANSER Complete Brand Identity Guidebook, Print Spreads, Poster Triptych & Social System',
+        image: '/assets/projects/disbalancer/presentation.png',
+        caption: 'DISBALANCER Complete Brand Identity Guidebook, Print Spreads, Poster Triptych & Social System',
         tag: 'FULL ARTBOARD',
         fullWidth: true
       }
@@ -807,7 +807,8 @@ class PortfolioApp {
   }
 
   openProject(id, updateHistory = true) {
-    const project = PROJECTS.find(p => p.id === id);
+    const resolvedId = id === 'disbalanser' ? 'disbalancer' : id;
+    const project = PROJECTS.find(p => p.id === resolvedId);
     if (!project) {
       this.switchView('home');
       return;
@@ -819,7 +820,7 @@ class PortfolioApp {
     this.renderHomeWorkGrid();
 
     this.renderCaseStudy(project);
-    this.switchView('case-study', updateHistory, `#project-${id}`);
+    this.switchView('case-study', updateHistory, `#project-${resolvedId}`);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
