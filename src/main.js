@@ -515,7 +515,7 @@ export const PROJECTS = [
 ];
 
 // Configuration Constants
-const NDA_PASSCODE = '2026';
+const NDA_PASSCODE = 'dar2701977';
 const NDA_STORAGE_KEY = 'darina_nda_unlocked';
 
 class PortfolioApp {
