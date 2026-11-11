@@ -1345,3 +1345,325 @@ button {
     max-width: 320px;
   }
 }
+
+/* ==========================================================================
+   NDA Lock Badge & Access Modal
+   ========================================================================== */
+
+/* Hover Lock Badge on Project Cards */
+.project-thumb-container {
+  position: relative;
+}
+
+.project-nda-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(18, 18, 20, 0.76);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  transform: translateY(-4px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.project-card:hover .project-nda-badge {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.project-nda-lock-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sidebar Lock Indicator */
+.sidebar-nda-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-lock-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.45;
+  color: var(--text-secondary);
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.sidebar-nav-link:hover .sidebar-lock-icon {
+  opacity: 0.95;
+  color: var(--text-primary);
+}
+
+/* Modal Overlay */
+.nda-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.nda-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: ndaFadeIn 0.2s ease-out forwards;
+}
+
+.nda-modal-card {
+  position: relative;
+  z-index: 10000;
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-divider);
+  border-radius: 16px;
+  padding: 32px 28px 26px;
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  animation: ndaPopIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ndaFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ndaPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.nda-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.nda-modal-close:hover {
+  background: var(--bg-hover-subtle);
+  color: var(--text-primary);
+}
+
+.nda-modal-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-badge);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.nda-modal-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nda-modal-title {
+  font-family: var(--font-sans-montreal);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px 0;
+}
+
+.nda-modal-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 20px;
+  margin: 0 0 22px 0;
+  max-width: 330px;
+}
+
+.nda-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nda-input-group {
+  width: 100%;
+}
+
+.nda-code-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-divider);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.nda-code-input:focus {
+  outline: none;
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.nda-code-input.is-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.nda-code-input.shake {
+  animation: ndaShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes ndaShake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.nda-error {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: #ef4444;
+  margin: -4px 0 0 0;
+}
+
+.nda-submit-btn {
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  margin-top: 2px;
+}
+
+.nda-submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.nda-submit-btn:active {
+  transform: translateY(0);
+}
+
+.nda-modal-footer {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nda-footer-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.nda-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nda-footer-link {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.nda-footer-link:hover {
+  color: var(--text-secondary);
+}
+
+.nda-footer-dot {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nda-modal-card {
+    background: #18181B;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .nda-modal-icon-wrap {
+    background: #27272A;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .nda-code-input {
+    background: #121214;
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .nda-code-input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+  }
+  .nda-submit-btn {
+    background: #FFFFFF;
+    color: #000000;
+  }
+}

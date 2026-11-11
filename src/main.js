@@ -514,6 +514,10 @@ export const PROJECTS = [
   }
 ];
 
+// Configuration Constants
+const NDA_PASSCODE = '2026';
+const NDA_STORAGE_KEY = 'darina_nda_unlocked';
+
 class PortfolioApp {
   constructor() {
     this.currentView = 'home';
@@ -539,6 +543,75 @@ class PortfolioApp {
     this.toast = document.getElementById('toast');
     this.mobileMenuBtn = document.getElementById('mobile-menu-toggle');
     this.sidebar = document.getElementById('main-sidebar');
+
+    // NDA Modal elements
+    this.ndaModal = document.getElementById('nda-modal');
+    this.ndaForm = document.getElementById('nda-form');
+    this.ndaCodeInput = document.getElementById('nda-code-input');
+    this.ndaError = document.getElementById('nda-error');
+    this.pendingNdaProjectId = null;
+  }
+
+  isNdaUnlocked() {
+    try {
+      return sessionStorage.getItem(NDA_STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  openNdaModal(project) {
+    if (!this.ndaModal) return;
+    this.ndaModal.style.display = 'flex';
+    if (this.ndaError) {
+      this.ndaError.style.display = 'none';
+    }
+    if (this.ndaCodeInput) {
+      this.ndaCodeInput.value = '';
+      this.ndaCodeInput.classList.remove('is-error', 'shake');
+      setTimeout(() => this.ndaCodeInput.focus(), 80);
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeNdaModal() {
+    if (!this.ndaModal) return;
+    this.ndaModal.style.display = 'none';
+    this.pendingNdaProjectId = null;
+    document.body.style.overflow = '';
+    if (this.ndaCodeInput) {
+      this.ndaCodeInput.value = '';
+      this.ndaCodeInput.classList.remove('is-error', 'shake');
+    }
+  }
+
+  handleNdaSubmit(e) {
+    e.preventDefault();
+    const enteredCode = (this.ndaCodeInput ? this.ndaCodeInput.value : '').trim();
+    if (enteredCode === NDA_PASSCODE) {
+      try {
+        sessionStorage.setItem(NDA_STORAGE_KEY, 'true');
+      } catch (err) {
+        console.warn('sessionStorage unavailable', err);
+      }
+      this.showToast('Access granted · Project unlocked');
+      const targetId = this.pendingNdaProjectId;
+      this.closeNdaModal();
+      if (targetId) {
+        this.openProject(targetId);
+      }
+    } else {
+      if (this.ndaError) {
+        this.ndaError.style.display = 'block';
+      }
+      if (this.ndaCodeInput) {
+        this.ndaCodeInput.classList.add('is-error');
+        this.ndaCodeInput.classList.remove('shake');
+        void this.ndaCodeInput.offsetWidth; // restart shake animation
+        this.ndaCodeInput.classList.add('shake');
+        this.ndaCodeInput.select();
+      }
+    }
   }
 
   showToast(message) {
@@ -568,8 +641,12 @@ class PortfolioApp {
     if (this.sidebarEnterpriseList) {
       this.sidebarEnterpriseList.innerHTML = enterpriseProjects.map(project => `
         <li>
-          <a href="#project-${project.id}" class="sidebar-nav-link" data-nav="project" data-id="${project.id}">
+          <a href="#project-${project.id}" class="sidebar-nav-link sidebar-nda-link" data-nav="project" data-id="${project.id}">
             <span>${project.shortName}</span>
+            <svg class="sidebar-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
           </a>
         </li>
       `).join('');
@@ -595,6 +672,14 @@ class PortfolioApp {
             class="project-thumb" 
             loading="lazy" 
           />
+          ${project.tab === 'enterprise' ? `
+            <div class="project-nda-badge" title="Protected by NDA">
+              <svg class="project-nda-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+          ` : ''}
         </div>
         <div class="project-info-row">
           <div class="project-text-block">
@@ -728,6 +813,13 @@ class PortfolioApp {
         this.closeMobileSidebar();
       }
 
+      // Close NDA Modal
+      const closeNda = e.target.closest('.js-close-nda-modal');
+      if (closeNda) {
+        e.preventDefault();
+        this.closeNdaModal();
+      }
+
       // Work Grid card click
       const card = e.target.closest('.project-card');
       if (card) {
@@ -778,6 +870,18 @@ class PortfolioApp {
       }
     });
 
+    // NDA Access Form Submission
+    if (this.ndaForm) {
+      this.ndaForm.addEventListener('submit', (e) => this.handleNdaSubmit(e));
+    }
+
+    // Escape Key to Close NDA Modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.ndaModal && this.ndaModal.style.display !== 'none') {
+        this.closeNdaModal();
+      }
+    });
+
     // Mobile Hamburger
     if (this.mobileMenuBtn && this.sidebar) {
       this.mobileMenuBtn.addEventListener('click', () => {
@@ -796,7 +900,18 @@ class PortfolioApp {
     const hash = window.location.hash;
     if (hash.startsWith('#project-')) {
       const id = hash.replace('#project-', '');
-      this.openProject(id, false);
+      const resolvedId = id === 'disbalanser' ? 'disbalancer' : id;
+      const project = PROJECTS.find(p => p.id === resolvedId);
+      if (project && project.tab === 'enterprise' && !this.isNdaUnlocked()) {
+        // Direct link to NDA project: stay on home view, switch to enterprise tab, and prompt passcode
+        this.currentTab = 'enterprise';
+        this.expandAccordion('enterprise');
+        this.switchView('home', false);
+        this.pendingNdaProjectId = resolvedId;
+        this.openNdaModal(project);
+        return;
+      }
+      this.openProject(resolvedId, false);
     } else if (hash === '#about') {
       this.switchView('about', false);
     } else if (hash === '#cv') {
@@ -811,6 +926,13 @@ class PortfolioApp {
     const project = PROJECTS.find(p => p.id === resolvedId);
     if (!project) {
       this.switchView('home');
+      return;
+    }
+
+    // Check NDA protection gate for Enterprise projects
+    if (project.tab === 'enterprise' && !this.isNdaUnlocked()) {
+      this.pendingNdaProjectId = resolvedId;
+      this.openNdaModal(project);
       return;
     }
 
